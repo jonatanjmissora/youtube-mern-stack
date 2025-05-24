@@ -1,5 +1,10 @@
+import Header from "../components/Header";
+
 export default function HomePage() {
   return (
-    <div>HomePage</div>
+    <div className="min-w-7xl h-screen">
+      <Header />
+      HomePage
+    </div>
   )
 }
