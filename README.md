@@ -1,3 +1,5 @@
+https://www.youtube.com/watch?v=Ea9rrRj9e0Y&list=LL&t=1654s
+
 Creamos 2 carpetas "Frontend" y "Backend"
 en terminal "cd backend"
 "npm init -y" para crear el package.json
@@ -37,7 +39,11 @@ creamos el modelo Note en src/models/Note.js
 
 actualizamos los controllers
 
-usamos postman / insomnia
+usamos postman / insomnia para testear
+
+=======================================================
+            FIN BACKEND
+=======================================================            
 
 
 
