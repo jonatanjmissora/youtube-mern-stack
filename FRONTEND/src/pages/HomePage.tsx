@@ -1,10 +1,11 @@
 import Header from "../components/Header";
+import NotesList from "../components/NotesList";
 
 export default function HomePage() {
   return (
-    <div className="min-w-7xl h-screen">
+    <section className="w-full h-full flex flex-col">
       <Header />
-      HomePage
-    </div>
+      <NotesList />
+    </section>
   )
 }
