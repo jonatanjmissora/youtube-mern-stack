@@ -1,13 +1,12 @@
 import { Route, Routes } from 'react-router'
-import './index.css'
+import './_styles/index.css'
 import HomePage from './pages/HomePage'
 import CreateNotePage from './pages/CreateNotePage'
 import DetailNotePage from './pages/DetailNotePage'
 
 function App() {
-
   return (
-    <>
+    <div className="page-layout">
       <Routes>
         <Route
           path='/'
@@ -22,7 +21,7 @@ function App() {
           element={<DetailNotePage />}
         />
       </Routes>
-    </>
+    </div>
   )
 }
 

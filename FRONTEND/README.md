@@ -9,6 +9,23 @@ en vite.config.ts
   export default defineConfig({  plugins: [    tailwindcss(),  ],})
 
 en index.css    @import "tailwindcss";
+
+si te salta un error    
+Delete the postcss.config.js file
+And then npm i -d @tailwindcss/vite, 
+change the vite.config.ts file
+...
+import tailwindcss from "@tailwindcss/vite";
+
+export default defineConfig(async () => ({
+  plugins: [
+    react(),
+    tailwindcss(),
+  ],
+...
+...
+then add @import "tailwindcss"; in your css file
+
 ===========================
 crear las rutas en App.tsx y en main.tsx
 

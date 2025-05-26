@@ -4,7 +4,7 @@ export default function Header() {
   return (
     <>
       <nav>
-        <span className="title2">Notes</span>
+        <span className="">Notes</span>
         <Link to={"/createNote"}>New Note</Link>
       </nav>
     </>
