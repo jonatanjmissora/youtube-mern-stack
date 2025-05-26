@@ -28,6 +28,9 @@ then add @import "tailwindcss"; in your css file
 
 ===========================
 crear las rutas en App.tsx y en main.tsx
+creamos las paginas HomePage, DetailNotePage y CreateNotePage
+en HomePage listamos las notas que traemos del BACKEND "http://localhost:5001/api/notes"
+instalamos el cors en el backend para permitir acceso de distinto dominio
 
 
 

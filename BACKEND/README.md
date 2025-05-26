@@ -45,8 +45,17 @@ usamos postman / insomnia para testear
             FIN BACKEND
 =======================================================            
 
+conectamos con el front end
 
+npm i cors
 
+en server.js coloco
+import cors from "cors"
+app.use(
+  cors({
+    origin: ["http://localhost:5173"],
+  })
+)
 
 
 
