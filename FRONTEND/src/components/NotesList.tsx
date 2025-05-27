@@ -52,7 +52,7 @@ export default function NotesList() {
         return <NoNotes />
 
     return (
-        <section className="w-full px-6">
+        <section className="w-full">
             {
                 loading
                     ? (<div className="w-full h-full flex justify-center">
