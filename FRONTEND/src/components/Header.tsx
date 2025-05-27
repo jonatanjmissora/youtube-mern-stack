@@ -4,8 +4,8 @@ export default function Header() {
   return (
     <header className="w-full py-4">
       <nav className="flex justify-between">
-        <span className="text-xl">Notes</span>
-        <Link to={"/createNote"}>New Note +</Link>
+        <span className="text-xl">Notas</span>
+        <Link to={"/createNote"}>Nueva +</Link>
       </nav>
     </header>
   )

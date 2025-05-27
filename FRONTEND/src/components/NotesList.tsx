@@ -48,16 +48,19 @@ export default function NotesList() {
         return <NoNotes />
 
     return (
-        <article className="w-full h-ful py-12 grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-3 gap-6">
+        <div className="w-full h-full">
             {
-                true
-                    ? <div className="w-full h-full flex justify-center items-center bg-red-500">
-                        <span className="mx-auto text-2xl font-bold tracking-wider">Loading...</span>
-                    </div>
-                    : notes.map(note => <Note key={note._id} note={note} setNotes={setNotes} />)
-            }
-        </article>
-    )
+                loading   
+                    ?   (<div className="w-full h-full flex justify-center items-center">
+                            <span className="mx-auto text-2xl font-bold tracking-wider">Loading...</span>
+                        </div>)
+                    :   (<article className="w-full h-full py-12 grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-3 gap-6">
+                            {
+                                notes.map(note => <Note key={note._id} note={note} setNotes={setNotes} />)
+                            }
+                        </article>)
+                }
+            </div>)
 }
 
 const NoNotes = () => {
@@ -82,17 +85,16 @@ const Note = ({ note, setNotes }: { note: NoteType, setNotes: React.Dispatch<Rea
         if (!success) {
             toast.error("No se pudo borrar la nota")
             console.log("Error del handleDelete", message)
-            return
+            // return
         }
-        toast.success("frontend nota borrada", data)
+        toast.success(message)
         console.log("frontend nota borrada", data)
         setNotes(prev => prev.filter(prevNote => prevNote._id !== note._id))
-        return
-
+        // return
     }
 
     return (
-        <div className="flex flex-col gap-4 p-8 bg-slate-400 rounded-lg">
+        <div className="flex flex-col h-max gap-4 p-8 bg-slate-400 rounded-lg">
             <p className="font-bold tracking-wider border-b py-1">{note.title}</p>
             <p>{note.content}</p>
             <div className="flex justify-between items-center">
