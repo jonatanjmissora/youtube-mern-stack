@@ -4,13 +4,12 @@ import { Link, useNavigate, useParams } from "react-router";
 import type { NoteType } from "../components/NotesList";
 import { useGetNote } from "../_lib/hooks/getNote";
 import { fetchApi } from "../_lib/utils/fetch";
+import { ArrowLeft } from "lucide-react";
 
 export default function DetailNotePage() {
 
-  const {id} = useParams()
-
+  const { id } = useParams()
   const { success, loading, note } = useGetNote(id ?? "0")
-  console.log(success, loading, note)
 
   return (
     <section className="h-full w-full">
@@ -19,18 +18,21 @@ export default function DetailNotePage() {
           <Link to={"/"} className="text-xl">Notas</Link>
         </nav>
       </header>
-      
+
       <article className="w-full h-full flex flex-col">
 
-        <Link to={"/"}>{"<"} Volver</Link>
+        <Link to={"/"} className="flex gap-2 items-center">
+          <ArrowLeft className="size-7 text-blue-600 pt-1" />
+          <span className="text-blue-600 text-xl">Volver</span>
+        </Link>
 
         <div className="h-full mx-auto mt-20">
           {
             loading
-              ? <span>Loading...</span> 
+              ? <span>Loading...</span>
               : success ? <UpdateNoteForm note={note} /> : <span>⚠ Error de carga</span>
           }
-          
+
         </div>
 
       </article>
@@ -39,10 +41,10 @@ export default function DetailNotePage() {
   )
 }
 
-const UpdateNoteForm = ({note}:{note: NoteType | undefined}) => {
+const UpdateNoteForm = ({ note }: { note: NoteType | undefined }) => {
 
-  const navigate = useNavigate() 
-  if(!note) return <span>No existe nota</span>
+  const navigate = useNavigate()
+  if (!note) return <span>No existe nota</span>
 
   const [, formAction] = useActionState(async (prevState: null, formData: FormData) => {
     const { title, content } = Object.fromEntries(formData.entries())
@@ -66,34 +68,34 @@ const UpdateNoteForm = ({note}:{note: NoteType | undefined}) => {
 
   return (
     <form action={formAction} className="flex flex-col gap-6 w-max p-8 bg-slate-400 rounded-lg">
-      <p className="text-xl font-bold tracking-wider border-b">Crear una nueva nota</p>
+      <p className="text-xl font-bold tracking-wider border-b">Editar nota</p>
 
       <div className="flex gap-2 items-center w-full">
         <label htmlFor="title" className="w-1/3">Título:</label>
-        <input 
-          type="text" 
-          id="title" 
-          name="title" 
+        <input
+          type="text"
+          id="title"
+          name="title"
           className="bg-white rounded-lg px-2 py-1 w-2/3 text-black"
           defaultValue={note?.title}
         />
       </div>
 
-      <div className="flex gap-2 items-center w-full">
+      <div className="flex gap-2 w-full">
         <label htmlFor="content" className="w-1/3">Contenido:</label>
-        <textarea 
-          id="content" 
-          name="content" 
+        <textarea
+          id="content"
+          name="content"
           className="bg-white rounded-lg px-2 py-1 w-2/3 text-black"
           defaultValue={note?.content}
         />
       </div>
 
-      <button 
-        type="submit" 
+      <button
+        type="submit"
         className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg"
       >
-        Crear
+        Editar
       </button>
     </form>
   )

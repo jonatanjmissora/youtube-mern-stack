@@ -3,6 +3,7 @@ import dateFormater from "../_lib/utils/dateFormater";
 import { useGetNotes } from "../_lib/hooks/getNotes";
 import { fetchApi } from "../_lib/utils/fetch";
 import toast from "react-hot-toast";
+import { NotepadText, OctagonX, Plus, SquarePen, Trash2 } from "lucide-react";
 
 export type NoteType = {
     _id: string;
@@ -40,7 +41,10 @@ export default function NotesList() {
     if (!success)
         return (
             <div className="w-full h-full flex flex-col gap-4 justify-center items-center">
-                <span>⚠ Error al cargar notas.</span>
+                <div className="flex gap-2 items-center">
+                    <OctagonX className="pt-1 text-yellow-500 size-10" />
+                    <span> Error al cargar notas.</span>
+                </div>
             </div>
         )
 
@@ -50,26 +54,31 @@ export default function NotesList() {
     return (
         <div className="w-full h-full">
             {
-                loading   
-                    ?   (<div className="w-full h-full flex justify-center items-center">
-                            <span className="mx-auto text-2xl font-bold tracking-wider">Loading...</span>
-                        </div>)
-                    :   (<article className="w-full h-full py-12 grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-3 gap-6">
-                            {
-                                notes.map(note => <Note key={note._id} note={note} setNotes={setNotes} />)
-                            }
-                        </article>)
-                }
-            </div>)
+                loading
+                    ? (<div className="w-full h-full flex justify-center items-center">
+                        <span className="mx-auto text-2xl font-bold tracking-wider">Loading...</span>
+                    </div>)
+                    : (<article className="w-full h-full py-12 grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-3 gap-6">
+                        {
+                            notes.map(note => <Note key={note._id} note={note} setNotes={setNotes} />)
+                        }
+                    </article>)
+            }
+        </div>)
+
 }
 
 const NoNotes = () => {
     return (
         <div className="w-full h-full flex flex-col gap-4 justify-center items-center">
-            <span>📖 No hay notas.</span>
+            <div className="flex gap-2 items-center">
+                <NotepadText className="size-7 text-blue-400 pt-1" />
+                <span>No hay notas.</span>
+            </div>
             <span>Agrega algunas notas</span>
-            <Link to={"/createNote"}>
-                Agregar Nota +
+            <Link to={"/createNote"} className="flex gap-2 items-center group">
+                <span className="text-blue-600 group-hover:text-blue-400 duration-200">Agregar Nota</span>
+                <Plus className="size-7 pt-1 text-blue-600 group-hover:text-blue-400 duration-200" />
             </Link>
         </div>
     )
@@ -77,7 +86,7 @@ const NoNotes = () => {
 
 const Note = ({ note, setNotes }: { note: NoteType, setNotes: React.Dispatch<React.SetStateAction<NoteType[]>> }) => {
 
-    const handleDelete = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const handleDelete = async (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         event.preventDefault()
         if (!window.confirm("Seguro quieres eliminar la nota?")) return
 
@@ -99,9 +108,9 @@ const Note = ({ note, setNotes }: { note: NoteType, setNotes: React.Dispatch<Rea
             <p>{note.content}</p>
             <div className="flex justify-between items-center">
                 <span>{dateFormater(new Date(note.updatedAt))}</span>
-                <div className="flex gap-1">
-                    <Link to={`/note/${note._id}`}><button>🖍</button></Link>
-                    <button onClick={handleDelete}>🗑</button>
+                <div className="flex gap-2 items-center relative w-16 h-8">
+                    <Link to={`/note/${note._id}`}><SquarePen className="absolute left-0 top-0 size-7 pt-1 text-blue-600 hover:text-blue-500 hover:scale-130 origin-center duration-200" /></Link>
+                    <div onClick={handleDelete} className="cursor-pointer"><Trash2 className="absolute right-0 top-0 size-7 pt-1 text-blue-600 hover:text-blue-500 hover:scale-130 origin-center duration-200" /></div>
                 </div>
             </div>
         </div>

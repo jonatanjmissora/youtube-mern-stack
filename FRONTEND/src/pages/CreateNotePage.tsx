@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router";
 import toast from "react-hot-toast";
 import { fetchApi } from "../_lib/utils/fetch";
 import { useActionState } from "react";
+import { ArrowLeft } from "lucide-react";
 
 export default function CreateNotePage() {
   return (
@@ -14,7 +15,10 @@ export default function CreateNotePage() {
 
       <article className="w-full h-full flex flex-col">
 
-        <Link to={"/"}>{"<"} Volver</Link>
+        <Link to={"/"} className="flex gap-2 items-center">
+          <ArrowLeft className="size-7 text-blue-600 pt-1" />
+          <span className="text-blue-600 text-xl">Volver</span>
+        </Link>
 
         <div className="h-full mx-auto mt-20">
           <CreateNoteForm />
@@ -27,7 +31,7 @@ export default function CreateNotePage() {
 
 const CreateNoteForm = () => {
 
-  const navigate = useNavigate() 
+  const navigate = useNavigate()
 
   const [, formAction] = useActionState(async (prevState: null, formData: FormData) => {
     const { title, content } = Object.fromEntries(formData.entries())
@@ -55,25 +59,25 @@ const CreateNoteForm = () => {
 
       <div className="flex gap-2 items-center w-full">
         <label htmlFor="title" className="w-1/3">Título:</label>
-        <input 
-          type="text" 
-          id="title" 
-          name="title" 
-          className="bg-white rounded-lg px-2 py-1 w-2/3 text-black" 
+        <input
+          type="text"
+          id="title"
+          name="title"
+          className="bg-white rounded-lg px-2 py-1 w-2/3 text-black"
         />
       </div>
 
       <div className="flex gap-2 items-center w-full">
         <label htmlFor="content" className="w-1/3">Contenido:</label>
-        <textarea 
-          id="content" 
-          name="content" 
-          className="bg-white rounded-lg px-2 py-1 w-2/3 text-black" 
+        <textarea
+          id="content"
+          name="content"
+          className="bg-white rounded-lg px-2 py-1 w-2/3 text-black"
         />
       </div>
 
-      <button 
-        type="submit" 
+      <button
+        type="submit"
         className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg"
       >
         Crear
