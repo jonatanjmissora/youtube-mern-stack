@@ -40,23 +40,23 @@ export default function NotesList() {
 
     if (!success)
         return (
-            <div className="w-full h-full flex flex-col gap-4 justify-center items-center">
+            <section className="w-full flex flex-col gap-4 justify-center items-center">
                 <div className="flex gap-2 items-center">
                     <OctagonX className="pt-1 text-yellow-500 size-10" />
                     <span> Error al cargar notas.</span>
                 </div>
-            </div>
+            </section>
         )
 
     if (notes.length === 0 && !loading)
         return <NoNotes />
 
     return (
-        <div className="w-full h-full">
+        <section className="w-full px-6">
             {
                 loading
-                    ? (<div className="w-full h-full flex justify-center items-center">
-                        <span className="mx-auto text-2xl font-bold tracking-wider">Loading...</span>
+                    ? (<div className="w-full h-full flex justify-center">
+                        <span className="mx-auto text-2xl font-bold tracking-wider mt-32">Loading...</span>
                     </div>)
                     : (<article className="w-full h-full py-12 grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-3 gap-6">
                         {
@@ -64,13 +64,13 @@ export default function NotesList() {
                         }
                     </article>)
             }
-        </div>)
+        </section>)
 
 }
 
 const NoNotes = () => {
     return (
-        <div className="w-full h-full flex flex-col gap-4 justify-center items-center">
+        <section className="w-full h-full flex flex-col gap-4 mt-32 items-center">
             <div className="flex gap-2 items-center">
                 <NotepadText className="size-7 text-blue-400 pt-1" />
                 <span>No hay notas.</span>
@@ -80,7 +80,7 @@ const NoNotes = () => {
                 <span className="text-blue-600 group-hover:text-blue-400 duration-200">Agregar Nota</span>
                 <Plus className="size-7 pt-1 text-blue-600 group-hover:text-blue-400 duration-200" />
             </Link>
-        </div>
+        </section>
     )
 }
 

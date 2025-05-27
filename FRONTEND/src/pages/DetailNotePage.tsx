@@ -13,11 +13,6 @@ export default function DetailNotePage() {
 
   return (
     <section className="h-full w-full">
-      <header className="w-full py-4">
-        <nav className="flex justify-between">
-          <Link to={"/"} className="text-xl">Notas</Link>
-        </nav>
-      </header>
 
       <article className="w-full h-full flex flex-col">
 

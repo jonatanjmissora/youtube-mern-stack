@@ -6,21 +6,16 @@ import { ArrowLeft } from "lucide-react";
 
 export default function CreateNotePage() {
   return (
-    <section className="h-full w-full">
-      <header className="w-full py-4">
-        <nav className="flex justify-between">
-          <Link to={"/"} className="text-xl">Notas</Link>
-        </nav>
-      </header>
+    <section className="w-full px-6">
 
-      <article className="w-full h-full flex flex-col">
+      <article className="w-full flex flex-col">
 
         <Link to={"/"} className="flex gap-2 items-center">
           <ArrowLeft className="size-7 text-blue-600 pt-1" />
           <span className="text-blue-600 text-xl">Volver</span>
         </Link>
 
-        <div className="h-full mx-auto mt-20">
+        <div className="mx-auto mt-20">
           <CreateNoteForm />
         </div>
 
@@ -54,7 +49,7 @@ const CreateNoteForm = () => {
   }, null)
 
   return (
-    <form action={formAction} className="flex flex-col gap-6 w-max p-8 bg-slate-400 rounded-lg">
+    <form action={formAction} className="w-full flex flex-col gap-6 p-8 bg-slate-400 rounded-lg">
       <p className="text-xl font-bold tracking-wider border-b">Crear una nueva nota</p>
 
       <div className="flex gap-2 items-center w-full">
@@ -67,7 +62,7 @@ const CreateNoteForm = () => {
         />
       </div>
 
-      <div className="flex gap-2 items-center w-full">
+      <div className="flex gap-2 w-full">
         <label htmlFor="content" className="w-1/3">Contenido:</label>
         <textarea
           id="content"
