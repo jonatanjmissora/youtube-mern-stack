@@ -20,6 +20,7 @@
     "react-router": "^7.6.0"
   },
   "devDependencies": {
+    "@tanstack/eslint-plugin-query": "^5.78.0",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
     "@vitejs/plugin-react-swc": "^3.6.0",

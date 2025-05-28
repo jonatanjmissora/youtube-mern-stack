@@ -1,14 +1,12 @@
 
 import { useQuery } from '@tanstack/react-query'
 import { Link } from 'react-router'
+import { fetchRM } from '../../_lib/fetchRM'
 
 export default function RMCharactersPage() {
   const { status, data } = useQuery({
     queryKey: ['characters'],
-    queryFn: async () => {
-      const res = await fetch('https://rickandmortyapi.com/api/character/')
-      return await res.json()
-    }
+    queryFn: fetchRM.characters
   })
 
   if (status === 'pending') return <p>Loading...</p>
@@ -20,7 +18,7 @@ export default function RMCharactersPage() {
     <div>
       <p className='text-xl font-bold'>Characters</p>
       <ul>
-        {data.results.map((person) => {
+        {data.results.map((person: any) => {
           return (
             <li key={person.id}>
               <Link to={`/rickandmorty/characters/${person.id}`}>

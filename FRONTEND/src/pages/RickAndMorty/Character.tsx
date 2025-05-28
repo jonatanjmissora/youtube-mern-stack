@@ -1,15 +1,13 @@
 
 import { useQuery } from '@tanstack/react-query'
 import { Link, useParams } from 'react-router'
+import { fetchRM } from '../../_lib/fetchRM'
 
 function Character() {
   const { characterId } = useParams()
   const { status, data } = useQuery({
     queryKey: ['character', characterId],
-    queryFn: async () => {
-      const res = await fetch(`https://rickandmortyapi.com/api/character/${characterId}`)
-      return await res.json()
-    }
+    queryFn: () => fetchRM.characterById(characterId ?? "")
   })
 
   if (status === 'pending') return <p>Loading...</p>
@@ -54,7 +52,7 @@ function Character() {
 
       <br />
       <div>Episodes</div>
-      {data.episode.map((episode) => {
+      {data.episode.map((episode: any) => {
         const episodeUrlParts = episode.split('/').filter(Boolean)
         const episodeId = episodeUrlParts[episodeUrlParts.length - 1]
 
@@ -64,7 +62,7 @@ function Character() {
   )
 }
 
-function Episode({ id }) {
+function Episode({id}: {id: string}) {
   const { data, status } = useQuery({
     queryKey: ['episode', id],
     queryFn: async () => {
@@ -88,7 +86,7 @@ function Episode({ id }) {
   )
 }
 
-function Location({ id }) {
+function Location({ id }: {id: string}) {
   const { data, status } = useQuery({
     queryKey: ['location', id],
     queryFn: async () => {

@@ -5,12 +5,12 @@ import CreateNotePage from './pages/CreateNotePage'
 import DetailNotePage from './pages/DetailNotePage'
 import Header from './components/Header'
 import Footer from './components/Footer'
-import RickAndMortyPage from './pages/RickAndMortyPage'
-import RMEpisodesPage from './pages/RMEpisodesPage'
-import RMCharactersPage from './pages/RMCharactersPage'
-import Episode from './pages/Episode'
-import Character from './pages/Character'
+import RickAndMortyPage from './pages/RickAndMorty/RickAndMortyPage'
+import RMEpisodesPage from './pages/RickAndMorty/RMEpisodesPage'
+import RMCharactersPage from './pages/RickAndMorty/RMCharactersPage'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import Episode from './pages/RickAndMorty/Episode'
+import Character from './pages/RickAndMorty/Character'
 
 const queryClient = new QueryClient()
 
